@@ -1,0 +1,15 @@
+<template>
+    <h1>demoCsvfileGeneration</h1>
+    <lightning-card title=" Generate Opportunity CSV">
+        <lightning-button label="Generate CSV" variant="brand" onclick={handleclick}></lightning-button>
+        <template lwc:if={opposdata}>
+            <template for:each={opposdata} for:item="oppo">
+                <div key={oppo.id}>
+                    <p>{oppo.Name}</p>
+                    <p>{oppo.StageName}</p>
+
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

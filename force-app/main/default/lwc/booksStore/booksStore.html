@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Books Store">
+        // This is Online Books Store
+        <div class="slds-p-around_medium">
+            <div class="slds-p-around_medium">
+                <lightning-input label="Search Books" type="text" onchange={FetchHanlderOnchange} value={query}>
+                </lightning-input>
+            </div>
+            <lightning-layout multiple-rows>
+                <template lwc:if={books}>
+                    <template for:each={books} for:item="item">
+                        <lightning-layout-item size="3" padding="around-small" key={item.id}>
+                            <div class="slds-box slds-p-around_medium slds-text-align_center">
+                                <img src={item.thumbnail} height="200px" alt="This is thumbnail for the books">
+                                <div class="slds-text-heading_small slds-p-vertical_medium">
+                                    <strong>{item.title}</strong>
+                                </div>
+                                <div>Published Date--<strong>{item.publishdate}</strong></div>
+                                <div>Average Rating--<strong>{item.averageRating}</strong></div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </template>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+
+</template>

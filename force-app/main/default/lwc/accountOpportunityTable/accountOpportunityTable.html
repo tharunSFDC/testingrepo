@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title={tableTitle} icon-name="standard:opportunity">
+        <div slot="actions">
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                variant="border-filled"
+                alternative-text="Refresh"
+                title="Refresh Data"
+                onclick={refreshData}
+                disabled={isLoading}>
+            </lightning-button-icon>
+        </div>
+        
+        <div class="slds-card__body slds-card__body_inner">
+            <template if:true={isLoading}>
+                <div class="slds-is-relative">
+                    <lightning-spinner alternative-text="Loading opportunities..." size="medium"></lightning-spinner>
+                </div>
+            </template>
+            
+            <template if:true={hasOpportunities}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={opportunities}
+                    columns={columns}
+                    sorted-by={sortBy}
+                    sorted-direction={sortDirection}
+                    onsort={handleSort}
+                    draft-values={draftValues}
+                    onsave={handleSave}
+                    oncancel={handleCancel}
+                    hide-checkbox-column="true"
+                    show-row-number-column="true"
+                    resize-column-disabled="false"
+                    min-column-width="120"
+                    max-row-selection="0">
+                </lightning-datatable>
+            </template>
+            
+            <template if:false={hasOpportunities}>
+                <template if:false={isLoading}>
+                    <div class="slds-text-align_center slds-p-around_medium">
+                        <lightning-icon icon-name="standard:opportunity" size="large" class="slds-m-bottom_small"></lightning-icon>
+                        <h3 class="slds-text-heading_medium slds-m-bottom_small">No Opportunities Found</h3>
+                        <p class="slds-text-body_regular slds-text-color_weak">
+                            This account doesn't have any related opportunities yet.
+                        </p>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>
