@@ -6,7 +6,7 @@ public class AccountAction {
         list<Opportunity> newopp =[SELECT AccountId, Amount FROM Opportunity where id =: ids[0]];
         system.debug(newopp);
         
-        
+        // added new comment
         list<Account> acc = [SELECT AnnualRevenue FROM Account where id=: newopp[0].accountId];
         
         List<Decimal> annual = new list<Decimal> ();
